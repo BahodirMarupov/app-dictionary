@@ -14,8 +14,12 @@
             <a href="/" class="btn btn-secondary justify-content-start">
                 Mening lug'atim
             </a></div>
+        <div class="error" th:if="${param.error}"
+             th:with="errorMsg=${session['SPRING_SECURITY_LAST_EXCEPTION'].message}">
+            Reason: <span th:text="${errorMsg}">Wrong input!</span>
+        </div>
         <div class="card-body">
-            <form class="text-center border border-light p-5" th:action="@{/login}" method="post" th:object="${SignIn}">
+            <form class="text-center border border-light p-5" th:action="@{/login}" method="post"">
 
                 <p class="h4 mb-4">Sahifaga kirish</p>
 
