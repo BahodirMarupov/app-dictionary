@@ -5,12 +5,22 @@
     <title>Lug'at</title>
     <link th:rel="stylesheet" th:href="@{/webjars/bootstrap/4.5.0/css/bootstrap.min.css} "/>
     <link th:rel="stylesheet" th:href="@{https://use.fontawesome.com/releases/v5.8.2/css/all.css}">
-    <link rel="icon" type="image/x-icon" href="../static/img/favicon.ico" th:href="@{/img/favicon.ico}" />
+    <link rel="icon" type="image/x-icon" href="../static/img/favicon.ico" th:href="@{/img/favicon.ico}"/>
 </head>
 <body class="bg-secondary">
 
-<div class="container col-lg-8 col-md-10 col-sm-10">
-    <nav class="navbar navbar-expand-lg navbar-light bg-light mt-3 mb-1">
+<div class="container col-lg-10 col-md-10 col-sm-10 col-xl-8">
+    <div class="bg-light navbar navbar-expand-lg navbar-light mt-3 mb-1 justify-content-between rounded-top">
+        <div class="nav-item col-4">
+        <span class="text-dark font-weight-bold">
+            Mening lug'atim
+        </span>
+        </div>
+        <button id="oBtn" type="button" class="btn btn-outline-danger d-inline-block float-left">
+            <i class="fas fa-sign-out-alt"></i>
+        </button>
+    </div>
+    <nav class="navbar navbar-expand-lg navbar-light bg-white mb-1">
         <div class="col-lg-6- col-md-6 col-sm-12">
             <a class="btn btn-success text-light align-baseline d-inline" id="addBtn">Yangi so'z qo'shish</a>
         </div>
@@ -71,11 +81,13 @@
                         <div class="modal-body">
                             <div class="form-group">
                                 <label for="wordRu" class="col-form-label">Ruscha:</label>
-                                <label for="wordRu1"></label><input type="text" class="form-control" id="wordRu1" name="wordRu" value="">
+                                <label for="wordRu1"></label><input type="text" class="form-control" id="wordRu1"
+                                                                    name="wordRu" value="">
                             </div>
                             <div class="form-group">
                                 <label for="wordUz" class="col-form-label">O'zbekcha:</label>
-                                <label for="wordUz1"></label><textarea class="form-control" id="wordUz1" name="wordUz"></textarea>
+                                <label for="wordUz1"></label><textarea class="form-control" id="wordUz1"
+                                                                       name="wordUz"></textarea>
                             </div>
                         </div>
                         <div class="modal-footer">
@@ -139,6 +151,20 @@
         </div>
     </div>
 </div>
+<div class="modal fade" id="modalLogout" data-backdrop="static" data-keyboard="false" tabindex="-1" role="dialog"
+     aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-body">
+                <span class="text-dark font-weight-bold">Qayoqqa ketyapsiz! Yana biroz shug'ullaning.</span>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-success" data-dismiss="modal">Mayli</button>
+                <a href="/logout" class="btn btn-danger">Chiqmasam bo'lmaydi!</a>
+            </div>
+        </div>
+    </div>
+</div>
 
 <script th:src="@{/webjars/jquery/3.5.1/jquery.min.js}"></script>
 <script th:src="@{/webjars/popper.js/1.16.0/umd/popper.min.js}"></script>
@@ -169,6 +195,13 @@
                 }
             )
         });
+    $(document).ready(
+        function () {
+            $('#oBtn').on('click', function (event) {
+                $('#modalLogout').modal();
+            })
+        }
+    )
 
     $(document).ready(
         function () {

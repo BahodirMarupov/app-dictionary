@@ -29,7 +29,7 @@ public class UserConfig extends WebSecurityConfigurerAdapter {
                 .anyRequest().authenticated()
                 .and()
                 .formLogin()
-                .loginPage("/login")
+                .loginPage("/login").permitAll()
                 .failureUrl("/login?error=true").
                 defaultSuccessUrl("/",true).permitAll()
                 .defaultSuccessUrl("/wordList")

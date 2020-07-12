@@ -2,13 +2,13 @@ package uz.pdp.dictionary.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import uz.pdp.dictionary.entity.Users;
 import uz.pdp.dictionary.entity.Word;
 import uz.pdp.dictionary.payload.ReqWord;
 import uz.pdp.dictionary.payload.Result;
 import uz.pdp.dictionary.repository.WordRepository;
 
 import java.util.Optional;
-import java.util.UUID;
 
 @Service
 public class WordService {
@@ -21,10 +21,10 @@ public class WordService {
         }
     }
 
-    public Result saveWord(ReqWord reqWord) {
+    public Result saveWord(ReqWord reqWord,Users users) {
         Optional<Word> optionalWord = repository.findByWordRu(reqWord.getWordRu());
         if (!optionalWord.isPresent()) {
-            Word word = new Word(reqWord.getWordUz(), reqWord.getWordRu());
+            Word word = new Word(reqWord.getWordUz(), reqWord.getWordRu(),users);
             repository.save(word);
             return new Result("Added successfully", true);
         }

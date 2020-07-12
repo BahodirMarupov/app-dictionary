@@ -17,4 +17,6 @@ public class ReqUser {
     private String username;
     @Pattern(regexp = "((?=.*[0-9])(?=.*[a-z])(?=.*[A-Z]).{6,20})", message = "Not allowed password")
     private String password;
+    @Pattern(regexp = "((?=.*[0-9])(?=.*[a-z])(?=.*[A-Z]).{6,20})", message = "Not allowed password")
+    private String prePassword;
 }

@@ -15,9 +15,10 @@ import java.util.UUID;
 @NoArgsConstructor
 public class Word {
 
-    public Word(String wordUz, String wordRu) {
+    public Word(String wordUz, String wordRu, Users users) {
         this.wordUz = wordUz;
         this.wordRu = wordRu;
+        this.users = users;
     }
 
     @Id
@@ -26,5 +27,7 @@ public class Word {
     private String wordUz;
     @Column(unique = true)
     private String wordRu;
+    @ManyToOne
+    private Users users;
     private Long createdAt=(new Date().getTime());
 }

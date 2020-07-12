@@ -9,10 +9,12 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import uz.pdp.dictionary.entity.Users;
 import uz.pdp.dictionary.entity.Word;
 import uz.pdp.dictionary.payload.ReqWord;
 import uz.pdp.dictionary.payload.Result;
 import uz.pdp.dictionary.repository.WordRepository;
+import uz.pdp.dictionary.security.CurrentUser;
 import uz.pdp.dictionary.service.WordService;
 
 import java.util.Optional;
@@ -28,16 +30,16 @@ public class WordController {
     private WordService service;
 
     @GetMapping("/wordList")
-    public String getMainPage(Model model, @RequestParam(defaultValue = "0") int page){
-        Page<Word> all = repository.findAll(PageRequest.of(page, 50,Sort.by("createdAt").descending()));
+    public String getMainPage(@CurrentUser Users users, Model model, @RequestParam(defaultValue = "0") int page){
+        Page<Word> all = repository.findAllByUsers(users,PageRequest.of(page, 50,Sort.by("createdAt").descending()));
         model.addAttribute("data",all);
         model.addAttribute("currentPage",page);
         return "index";
     }
 
     @PostMapping("/api/save")
-    public String saveWord(ReqWord reqWord){
-        Result result = service.saveWord(reqWord);
+    public String saveWord(ReqWord reqWord,@CurrentUser Users users){
+        Result result = service.saveWord(reqWord,users);
         return "redirect:/wordList";
     }
 
@@ -59,9 +61,9 @@ public class WordController {
     }
     @GetMapping("/api/search")
     @ResponseBody
-    public Word search(@RequestParam String wordRu){
-        Optional<Word> byWordRu = repository.findByWordRu(wordRu);
-        return byWordRu.orElse(null);
+    public Word search(@RequestParam String wordRu, @CurrentUser Users users){
+        Optional<Word> optionalWord = repository.findByWordRuAndUsers(wordRu,users);
+        return optionalWord.orElse(null);
     }
 
     @GetMapping("/api/delete")

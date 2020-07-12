@@ -5,6 +5,7 @@ import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -53,8 +54,14 @@ public class UserController {
 //    }
 
     @PostMapping("/registration")
-    public Result signUp(@ModelAttribute("user") ReqUser user) {
-        System.out.println(user.getUsername());
-        return service.addUser(user);
+    public String signUp(@ModelAttribute("user") @Valid ReqUser user, BindingResult bindingResult) {
+        if (bindingResult.hasErrors()) {
+            return "registration";
+        }
+        if (!user.getPassword().equals(user.getPrePassword())){
+            return "registration";
+        }
+        Result result = service.addUser(user);
+        return result.isSuccess()?"login":"registration";
     }
 }
