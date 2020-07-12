@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Lug'at</title>
+    <link th:rel="stylesheet" th:href="@{/webjars/bootstrap/4.5.0/css/bootstrap.min.css} "/>
+    <link th:rel="stylesheet" th:href="@{https://use.fontawesome.com/releases/v5.8.2/css/all.css}">
+    <link rel="icon" type="image/x-icon" href="../static/img/favicon.ico" th:href="@{/img/favicon.ico}" />
+</head>
+<body class="bg-secondary">
+
+<div class="container col-lg-8 col-md-10 col-sm-10">
+    <nav class="navbar navbar-expand-lg navbar-light bg-light mt-3 mb-1">
+        <div class="col-lg-6- col-md-6 col-sm-12">
+            <a class="btn btn-success text-light align-baseline d-inline" id="addBtn">Yangi so'z qo'shish</a>
+        </div>
+        <form class="form-inline my-2 my-lg-0 col-lg-6- col-md-6 col-sm-12">
+            <input class="form-control mr-sm-2" type="search" placeholder="ruscha so'z yozing" id="swordRu"
+                   aria-label="Search">
+            <a class="btn btn-outline-success my-2 my-sm-0" id="sBtn" type="submit">Izlash</a>
+        </form>
+    </nav>
+    <div class="card border-light mb-3 rounded-sm">
+        <div class="card-body">
+            <table class="table table-hover">
+                <thead class="thead-light">
+                <tr class="d-flex">
+                    <th class="col-lg-4 col-md-4 col-sm-4">Ruscha</th>
+                    <th class="col-lg-4 col-md-4 col-sm-4">O'zbekcha</th>
+                    <th class="col-lg-4 col-md-4 col-sm-4" colspan="2">Tahrir</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr class="d-flex" th:each="word: ${data.content}">
+                    <td class="col-lg-4 col-md-4 col-sm-4" th:text="${word.wordRu}"></td>
+                    <td class="col-lg-4 col-md-4 col-sm-4" th:text="${word.wordUz}"></td>
+                    <td class="col-lg-2 col-md-2 col-sm-2">
+                        <a th:href="@{/api/getOne/(id=${word.id})}"
+                           class="btn btn-primary text-light eBtn">Tahrirlash</a>
+                    </td>
+                    <td class="col-lg-2 col-md-2 col-sm-2">
+                        <a th:href="@{/api/delete/(id=${word.id})}" class="btn btn-danger text-light dBtn">O'chirish</a>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+            </hr>
+            <ul class="nav nav-pills">
+                <li class="nav-item nav bg-secondary font-weight-bold m-1 rounded-sm"
+                    th:classappend="${data.totalPages}==0?' d-none'"
+                    th:each="i:${#numbers.sequence(0,data.totalPages-1)}">
+                    <a th:href="@{/wordList/(page=${i})}" th:text="${i+1}" class="nav-link text-light"
+                       th:classappend="${currentPage}==${i}?'active':''"></a>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="myForm1">
+        <form th:action="@{/api/save}" method="post">
+            <div class="modal fade" id="exampleModal1" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+                 aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel1">Yangi so'z qo'shish</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <div class="form-group">
+                                <label for="wordRu" class="col-form-label">Ruscha:</label>
+                                <label for="wordRu1"></label><input type="text" class="form-control" id="wordRu1" name="wordRu" value="">
+                            </div>
+                            <div class="form-group">
+                                <label for="wordUz" class="col-form-label">O'zbekcha:</label>
+                                <label for="wordUz1"></label><textarea class="form-control" id="wordUz1" name="wordUz"></textarea>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Bekor qilish</button>
+                            <input type="submit" class="btn btn-primary" value="Saqlash">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+<div class="myForm">
+    <form th:action="@{/api/update}" method="post">
+        <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+             aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">So'zni tahrirlash</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <input type="text" class="form-control d-none" id="id" name="id">
+                        <div class="form-group">
+                            <label for="wordRu" class="col-form-label">Ruscha:</label>
+                            <input type="text" class="form-control" id="wordRu" name="wordRu">
+                        </div>
+                        <div class="form-group">
+                            <label for="wordUz" class="col-form-label">O'zbekcha:</label>
+                            <textarea class="form-control" id="wordUz" name="wordUz"></textarea>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Bekor qilish</button>
+                        <input type="submit" class="btn btn-primary" value="Saqlash">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+    <div class="modal fade" id="exampleModal2" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel2"
+         aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel2">Natija</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <p id="sfword"></p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" data-dismiss="modal">Eslab qolaman!</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script th:src="@{/webjars/jquery/3.5.1/jquery.min.js}"></script>
+<script th:src="@{/webjars/popper.js/1.16.0/umd/popper.min.js}"></script>
+<script th:src="@{/webjars/bootstrap/4.5.0/js/bootstrap.min.js}"></script>
+
+<script>
+    $(document).ready(
+        function () {
+            $('#addBtn').on('click', function (event) {
+                event.preventDefault();
+                $('#wordRu').val("");
+                $('#wordUz').val("");
+                $('#exampleModal1').modal();
+            })
+        }
+    );
+    $(document).ready(
+        function () {
+            $('.eBtn').on('click', function (event) {
+                    event.preventDefault();
+                    var href = $(this).attr('href');
+                    $.get(href, function (word) {
+                        $('#id').val(word.id);
+                        $('#wordRu').val(word.wordRu);
+                        $('#wordUz').val(word.wordUz);
+                        $('#exampleModal').modal();
+                    })
+                }
+            )
+        });
+
+    $(document).ready(
+        function () {
+            $('#sBtn').on('click', function (event) {
+                event.preventDefault();
+                let wordRu = $('#swordRu').val();
+                $.get("/api/search?wordRu=" + wordRu, function (word) {
+                    if (word.wordRu !== undefined) {
+                        $('#sfword').text(word.wordRu + ' - ' + word.wordUz);
+                    } else {
+                        $('#sfword').text("Not found!");
+                    }
+                    $('#exampleModal2').modal();
+                })
+            })
+        });
+</script>
+</body>
+</html>
