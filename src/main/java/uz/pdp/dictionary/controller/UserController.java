@@ -5,7 +5,10 @@ import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import uz.pdp.dictionary.payload.ReqSignIn;
 import uz.pdp.dictionary.payload.ReqUser;
 import uz.pdp.dictionary.payload.Result;
@@ -41,12 +44,12 @@ public class UserController {
     }
 
     @PostMapping("/login")
-    @ResponseBody
-    public Result signIn(@Valid @ModelAttribute("SignIn") ReqSignIn reqSignIn) {
+//    @ResponseBody
+    public String signIn(@Valid @ModelAttribute("SignIn") ReqSignIn reqSignIn) {
         System.out.println(reqSignIn.getPassword());
         Authentication authentication = authenticate.authenticate(
                 new UsernamePasswordAuthenticationToken(reqSignIn.getUsername(), reqSignIn.getPassword()));
-        return new Result("Kirildi", true);
+        return "homePage";
     }
 
     @PostMapping("/registration")
