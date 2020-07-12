@@ -17,7 +17,7 @@
             Mening lug'atim
         </a></div>
         <div class="card-body">
-            <form class="text-center border border-light p-5" th:action="@{/registration}" method="post">
+            <form class="text-center border border-light p-5" th:action="@{/registration}" method="post" th:object="${user}">
 
                 <p class="h4 mb-4">Ro'yxatdan o'tish</p>
 

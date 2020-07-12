@@ -1,7 +1,6 @@
 package uz.pdp.dictionary.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
@@ -27,30 +26,32 @@ public class UserController {
     private AuthenticationManager authenticate;
 
     @GetMapping
-    public String getHomePage(){
+    public String getHomePage() {
         return "homePage";
     }
 
     @GetMapping("/login")
-    public String getLoginPage(){
+    public String getLoginPage() {
         return "login";
     }
 
     @GetMapping("/registration")
-    public String getRegistrPage(){
+    public String getRegistrPage() {
         return "registration";
     }
 
     @PostMapping("/login")
     @ResponseBody
-    public Result signIn(@Valid @RequestBody ReqSignIn reqSignIn){
+    public Result signIn(@Valid @ModelAttribute("SignIn") ReqSignIn reqSignIn) {
+        System.out.println(reqSignIn.getPassword());
         Authentication authentication = authenticate.authenticate(
                 new UsernamePasswordAuthenticationToken(reqSignIn.getUsername(), reqSignIn.getPassword()));
-        return new Result("Kirildi",true);
+        return new Result("Kirildi", true);
     }
+
     @PostMapping("/registration")
-    @ResponseBody
-    public Result signUp(@Valid@RequestBody ReqUser user){
+    public Result signUp(@ModelAttribute("user") ReqUser user) {
+        System.out.println(user.getUsername());
         return service.addUser(user);
     }
 }

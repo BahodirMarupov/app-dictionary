@@ -5,7 +5,7 @@
     <title>Sign in</title>
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" rel="stylesheet"
           integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
-    <link rel="icon" type="image/x-icon" href="../static/img/favicon.ico" th:href="@{/img/favicon.ico}" />
+    <link rel="icon" type="image/x-icon" href="../static/img/favicon.ico" th:href="@{/img/favicon.ico}"/>
 </head>
 <body class="bg-secondary">
 <div class="container d-flex justify-content-center">
@@ -15,7 +15,7 @@
                 Mening lug'atim
             </a></div>
         <div class="card-body">
-            <form class="text-center border border-light p-5" th:action="@{/login}" method="post">
+            <form class="text-center border border-light p-5" th:action="@{/login}" method="post" th:object="${SignIn}">
 
                 <p class="h4 mb-4">Sahifaga kirish</p>
 
