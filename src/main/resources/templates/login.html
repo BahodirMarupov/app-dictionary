@@ -18,7 +18,7 @@
         <div class="card-body">
             <div class="justify-content-center d-flex text-center " th:if="${param.error}"
                  th:with="errorMsg=${session['SPRING_SECURITY_LAST_EXCEPTION'].message}">
-                <span class="text-danger" >Login yoki parol xato! <br/>Qayta kiring.</span>
+                <span class="text-danger" >Login yoki parol xato! <br/>Qayta kiriting.</span>
             </div>
             <form class="text-center border border-light p-5" th:action="@{/login}" method="post">
 
