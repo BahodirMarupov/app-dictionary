@@ -43,14 +43,14 @@ public class UserController {
         return "registration";
     }
 
-    @PostMapping("/login")
+//    @PostMapping("/login")
 //    @ResponseBody
-    public String signIn(@Valid @ModelAttribute("SignIn") ReqSignIn reqSignIn) {
-        System.out.println(reqSignIn.getPassword());
-        Authentication authentication = authenticate.authenticate(
-                new UsernamePasswordAuthenticationToken(reqSignIn.getUsername(), reqSignIn.getPassword()));
-        return "homePage";
-    }
+//    public String signIn(@ModelAttribute("sign") ReqSignIn reqSignIn) {
+//        System.out.println(reqSignIn.getPassword());
+//        Authentication authentication = authenticate.authenticate(
+//                new UsernamePasswordAuthenticationToken(reqSignIn.getUsername(), reqSignIn.getPassword()));
+//        return "homePage";
+//    }
 
     @PostMapping("/registration")
     public Result signUp(@ModelAttribute("user") ReqUser user) {

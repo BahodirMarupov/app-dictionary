@@ -25,11 +25,11 @@ public class UserService implements UserDetailsService {
     }
 
     public Result addUser(ReqUser user) {
-        if (!repository.existsByUsername(user.getUsername())){
-            Users users=new Users(user.getFirstName(),user.getLastName(),user.getUsername(),user.getPassword());
+        if (!repository.existsByUsername(user.getUsername())) {
+            Users users = new Users(user.getFirstName(), user.getLastName(), user.getUsername(), passwordEncoder.encode(user.getPassword()));
             repository.save(users);
-            return new Result("Royxatdan otildi",true);
+            return new Result("Royxatdan otildi", true);
         }
-        return new Result("Bunday foydalanuvchi mavjud",false);
+        return new Result("Bunday foydalanuvchi mavjud", false);
     }
 }
