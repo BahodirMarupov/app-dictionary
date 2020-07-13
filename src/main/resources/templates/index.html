@@ -11,7 +11,7 @@
 </head>
 <body class="bg-secondary">
 
-<div class="container col-lg-10 col-md-10 col-sm-10 col-xl-8">
+<div class="container col-lg-10 col-md-12 col-sm-12 col-xl-8">
     <div class="bg-light navbar navbar-expand-lg navbar-light mt-3 mb-1 justify-content-between rounded-top">
         <div class="nav-item col-4">
             <i class="fab fa-angellist"></i>
@@ -38,21 +38,21 @@
             <table class="table table-hover col-12" id="main-table">
                 <thead class="thead-light">
                 <tr class="d-flex">
-                    <th class="col-lg-4 col-md-4 col-sm-4">Ruscha</th>
-                    <th class="col-lg-4 col-md-4 col-sm-4">O'zbekcha</th>
-                    <th class="col-lg-2 col-md-2 col-sm-2" >Tahrirlash</th>
-                    <th class="col-lg-2 col-md-2 col-sm-2" >O'chirish</th>
+                    <th class="col-4">Ruscha</th>
+                    <th class="col-4">O'zbekcha</th>
+                    <th class="col-2" ></th>
+                    <th class="col-2" ></th>
                 </tr>
                 </thead>
                 <tbody>
                 <tr class="d-flex" th:each="word: ${data.content}">
-                    <td class="col-lg-4 col-md-4 col-sm-4" th:text="${word.wordRu}"></td>
-                    <td class="col-lg-4 col-md-4 col-sm-4" th:text="${word.wordUz}"></td>
-                    <td class="col-lg-2 col-md-2 col-sm-2">
+                    <td class="col-4" th:text="${word.wordRu}"></td>
+                    <td class="col-4" th:text="${word.wordUz}"></td>
+                    <td class="col-2 tBtns">
                         <a th:href="@{/api/getOne/(id=${word.id})}"
                            class="btn btn-outline-primary eBtn"><i class="fas fa-edit"></i></a>
                     </td>
-                    <td class="col-lg-2 col-md-2 col-sm-2 ">
+                    <td class="col-2 tBtns">
                         <a th:href="@{/api/delete/(id=${word.id})}" class="btn btn-outline-danger dBtn"><i class="far fa-trash-alt"></i></a>
                     </td>
                 </tr>

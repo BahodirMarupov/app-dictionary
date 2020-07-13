@@ -36,6 +36,10 @@ public class UserConfig extends WebSecurityConfigurerAdapter {
                 .passwordParameter("password")
                 .usernameParameter("username")
                 .and()
+                .rememberMe().tokenValiditySeconds((int) TimeUnit.DAYS.toSeconds(7))  // defaults to 7 days
+                .key("SecretKey")
+                .rememberMeParameter("remember-me")
+                .and()
                 .logout()
                 .logoutUrl("logout")
                 .logoutRequestMatcher(new AntPathRequestMatcher("/logout", "GET"))

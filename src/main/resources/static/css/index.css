@@ -4,8 +4,37 @@
     width: 100%;
     border: 1px solid #ddd;
 }
+
 #table-div {
-    overflow-x:auto;
-    font-size: smaller;
+    overflow-x: auto;
     text-align: center;
+    font-family: Arial, serif;
+    font-size: smaller;
+}
+
+@media only screen and (max-width: 768px) {
+    /* For mobile phones: */
+    [class*="col-4"] {
+        width: 35%;
+    }
+}
+
+@media only screen and (max-width: 768px) {
+    /* For mobile phones: */
+    [class*="col-2"] {
+        width: 15%;
+    }
+}
+
+@media only screen and (max-width: 768px) {
+    /* For mobile phones: */
+    [class*="col-2"] {
+        width: 15%;
+    }
+}
+@media only screen and (max-width: 768px) {
+    /* For mobile phones: */
+    [class*="col-12"] {
+        width: 100%;
+    }
 }
