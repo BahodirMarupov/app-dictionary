@@ -2,10 +2,12 @@
 <html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
+    <meta name='viewport' content='width=device-width, initial-scale=0.8'>
     <title>Lug'at</title>
     <link th:rel="stylesheet" th:href="@{/webjars/bootstrap/4.5.0/css/bootstrap.min.css} "/>
     <link th:rel="stylesheet" th:href="@{https://use.fontawesome.com/releases/v5.8.2/css/all.css}">
     <link rel="icon" type="image/x-icon" href="../static/img/favicon.ico" th:href="@{/img/favicon.ico}"/>
+    <link href="../static/css/index.css" th:href="@{/css/index.css}" rel="stylesheet" />
 </head>
 <body class="bg-secondary">
 
@@ -32,13 +34,14 @@
         </form>
     </nav>
     <div class="card border-light mb-3 rounded-sm">
-        <div class="card-body">
-            <table class="table table-hover">
+        <div class="card-body " id="table-div">
+            <table class="table table-hover col-12" id="main-table">
                 <thead class="thead-light">
                 <tr class="d-flex">
                     <th class="col-lg-4 col-md-4 col-sm-4">Ruscha</th>
                     <th class="col-lg-4 col-md-4 col-sm-4">O'zbekcha</th>
-                    <th class="col-lg-4 col-md-4 col-sm-4" colspan="2">Tahrir</th>
+                    <th class="col-lg-4 col-md-4 col-sm-2" >Tahrirlash</th>
+                    <th class="col-lg-4 col-md-4 col-sm-2" >O'chirish</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -47,10 +50,10 @@
                     <td class="col-lg-4 col-md-4 col-sm-4" th:text="${word.wordUz}"></td>
                     <td class="col-lg-2 col-md-2 col-sm-2">
                         <a th:href="@{/api/getOne/(id=${word.id})}"
-                           class="btn btn-primary text-light eBtn">Tahrirlash</a>
+                           class="btn btn-outline-primary eBtn"><i class="fas fa-edit"></i></a>
                     </td>
-                    <td class="col-lg-2 col-md-2 col-sm-2">
-                        <a th:href="@{/api/delete/(id=${word.id})}" class="btn btn-danger text-light dBtn">O'chirish</a>
+                    <td class="col-lg-2 col-md-2 col-sm-2 ">
+                        <a th:href="@{/api/delete/(id=${word.id})}" class="btn btn-outline-danger dBtn"><i class="far fa-trash-alt"></i></a>
                     </td>
                 </tr>
                 </tbody>
