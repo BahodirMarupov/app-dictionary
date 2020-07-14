@@ -6,7 +6,7 @@
     <title>Lug'at</title>
     <link th:rel="stylesheet" th:href="@{/webjars/bootstrap/4.5.0/css/bootstrap.min.css} "/>
     <link th:rel="stylesheet" th:href="@{https://use.fontawesome.com/releases/v5.8.2/css/all.css}">
-    <link rel="icon" type="image/x-icon" href="../static/img/favicon.ico" th:href="@{/img/favicon.ico}"/>
+    <link rel="icon" type="image/x-icon" href="../static/img/dic.ico" th:href="@{/img/dic.ico}"/>
     <link href="../static/css/index.css" th:href="@{/css/index.css}" rel="stylesheet" />
 </head>
 <body class="bg-secondary">
@@ -149,7 +149,7 @@
                     <p id="sfword"></p>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-primary" data-dismiss="modal">Eslab qolaman!</button>
+                    <button type="button" class="btn btn-primary" id="syBtn" data-dismiss="modal">Eslab qolaman!</button>
                 </div>
             </div>
         </div>
@@ -205,7 +205,7 @@
                 $('#modalLogout').modal();
             })
         }
-    )
+    );
 
     $(document).ready(
         function () {
@@ -215,8 +215,10 @@
                 $.get("/api/search?wordRu=" + wordRu, function (word) {
                     if (word.wordRu !== undefined) {
                         $('#sfword').text(word.wordRu + ' - ' + word.wordUz);
+                        $('#syBtn').text("Eslab qolaman");
                     } else {
                         $('#sfword').text("Not found!");
+                        $('#syBtn').text("Yopish");
                     }
                     $('#exampleModal2').modal();
                 })

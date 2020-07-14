@@ -6,54 +6,56 @@
     <title>Sign up</title>
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" rel="stylesheet"
           integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
-    <link rel="icon" type="image/x-icon" href="../static/img/favicon.ico" th:href="@{/img/favicon.ico}" />
+    <link rel="icon" type="image/x-icon" href="../static/img/dic.ico" th:href="@{/img/dic.ico}"/>
 </head>
 <body class="bg-secondary">
 
 <div class="container d-flex justify-content-center">
 
-    <div class="card col-lg-7 col-md-10 col-sm-12 mt-lg-5 mt-md-5 mt-sm-5">
+    <div class="card col-xl-5 col-lg-5 col-md-8 col-sm-10 mt-3 mb-3">
         <div class="card-header">
             <a href="/" class="btn btn-secondary justify-content-start">
-            Mening lug'atim
-        </a></div>
-        <div class="card-body">
-            <form class="text-center border border-light p-5" th:action="@{/registration}" method="post" th:object="${user}">
+                Mening lug'atim
+            </a></div>
+        <form class="text-center border border-light p-5" th:action="@{/registration}" method="post"
+              th:object="${user}">
 
-                <p class="h4 mb-4">Ro'yxatdan o'tish</p>
+            <p class="h4 mb-4">Ro'yxatdan o'tish</p>
 
-                <div class="form-row mb-4">
-                    <div class="col">
-                        <!-- First name -->
-                        <input type="text" name="firstName" id="firstName" class="form-control"
-                               placeholder="Ism" required>
-                    </div>
-                    <div class="col">
-                        <!-- Last name -->
-                        <input type="text" name="lastName" id="lastName" class="form-control" placeholder="Familiya"
-                               required>
-                    </div>
+            <div class="form-row mb-4">
+                <div class="col">
+                    <!-- First name -->
+                    <input type="text" name="firstName" id="firstName" class="form-control"
+                           placeholder="Ism" required>
                 </div>
+                <div class="col">
+                    <!-- Last name -->
+                    <input type="text" name="lastName" id="lastName" class="form-control" placeholder="Familiya"
+                           required>
+                </div>
+            </div>
 
-                <!--Username -->
-                <input type="text" id="defaultRegisterFormEmail" class="form-control mb-4" placeholder="Login" name="username">
+            <!--Username -->
+            <input type="text" id="defaultRegisterFormEmail" class="form-control mb-4" placeholder="Login"
+                   name="username">
 
-                <!-- Password -->
-                <input type="password" id="defaultRegisterFormPassword" class="form-control" placeholder="Parol" name="password"
-                       aria-describedby="defaultRegisterFormPasswordHelpBlock">
-                <small id="defaultRegisterFormPasswordHelpBlock" class="form-text text-muted mb-4">
-                    Kamida 6 ta belgi: raqamlar, katta va kichik harflardan foydalaning!
-                </small>
+            <!-- Password -->
+            <input type="password" id="defaultRegisterFormPassword" class="form-control" placeholder="Parol"
+                   name="password"
+                   aria-describedby="defaultRegisterFormPasswordHelpBlock">
+            <small id="defaultRegisterFormPasswordHelpBlock" class="form-text text-muted mb-4">
+                Kamida 6 ta belgi: raqamlar, katta va kichik harflardan foydalaning!
+            </small>
 
-                <!-- Confirm Password -->
-                <input type="password" id="defaultRegisterPhonePassword" class="form-control"
-                       placeholder="Parolni tasdiqlash" aria-describedby="defaultRegisterFormPhoneHelpBlock" name="prePassword">
+            <!-- Confirm Password -->
+            <input type="password" id="defaultRegisterPhonePassword" class="form-control"
+                   placeholder="Parolni tasdiqlash" aria-describedby="defaultRegisterFormPhoneHelpBlock"
+                   name="prePassword">
 
-                <!-- Sign up button -->
-                <button class="btn btn-info my-4 btn-block" type="submit" id="sBtn">Ro'yxatdan o'tish</button>
+            <!-- Sign up button -->
+            <button class="btn btn-info my-4 btn-block" type="submit" id="sBtn">Ro'yxatdan o'tish</button>
 
-            </form>
-        </div>
+        </form>
     </div>
 </div>
 

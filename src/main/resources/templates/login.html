@@ -6,45 +6,43 @@
     <title>Sign in</title>
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" rel="stylesheet"
           integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
-    <link rel="icon" type="image/x-icon" href="../static/img/favicon.ico" th:href="@{/img/favicon.ico}"/>
+    <link rel="icon" type="image/x-icon" href="../static/img/dic.ico" th:href="@{/img/dic.ico}"/>
 </head>
 <body class="bg-secondary">
 <div class="container d-flex justify-content-center">
-    <div class="card col-lg-7 col-md-10 col-sm-12 mt-lg-5 mt-md-5 mt-sm-5">
+    <div class="card col-xl-5 col-lg-5 col-md-8 col-sm-10 mt-3 mb-3">
         <div class="card-header">
-            <a href="/" class="btn btn-secondary justify-content-start">
+            <a href="/" class="btn btn-outline-secondary justify-content-start">
                 Mening lug'atim
             </a></div>
 
-        <div class="card-body">
-            <div class="justify-content-center d-flex text-center " th:if="${param.error}"
+        <form class="text-center border border-light p-5" th:action="@{/login}" method="post">
+
+            <p class="h4 mb-4">Sahifaga kirish</p>
+            <div class="justify-content-center d-flex text-center p-3" th:if="${param.error}"
                  th:with="errorMsg=${session['SPRING_SECURITY_LAST_EXCEPTION'].message}">
-                <span class="text-danger" >Login yoki parol xato! <br/>Qayta kiriting.</span>
+                <span class="text-danger">Login yoki parol xato! <br/>Qayta kiriting.</span>
             </div>
-            <form class="text-center border border-light p-5" th:action="@{/login}" method="post">
+            <!-- Username -->
+            <input type="username" id="username" name="username" class="form-control mb-4" placeholder="Login"
+                   required>
 
-                <p class="h4 mb-4">Sahifaga kirish</p>
+            <!-- Password -->
+            <input type="password" id="password" name="password" class="form-control mb-4" placeholder="Parol"
+                   required>
 
-                <!-- Username -->
-                <input type="username" id="username" name="username" class="form-control mb-4" placeholder="Login"
-                       required>
+            <!-- Remember-me -->
+            <input type="checkbox" name="remember-me" aria-label="Checkbox for following text input">
+            <span> Eslab qolinsin!</span>
 
-                <!-- Password -->
-                <input type="password" id="password" name="password" class="form-control mb-4" placeholder="parol"
-                       required>
+            <!-- Sign in button -->
+            <button class="btn btn-info btn-block my-4" id="sBtn" type="submit">kirish</button>
 
-                <!-- Remember-me -->
-                <input type="checkbox" name="remember-me" aria-label="Checkbox for following text input">
-                <span> Eslab qolinsin!</span>
-
-                <!-- Sign in button -->
-                <button class="btn btn-info btn-block my-4" id="sBtn" type="submit">kirish</button>
-
-                <!-- Register -->
+            <!-- Register -->
 
 
-            </form>
-        </div>
+        </form>
+
         <div class="card-footer">
             <p>Ro'yxatdan o'tmaganmisz?
                 <a href="/registration" class="btn btn-outline-primary">Ro'xatdan o'tish</a>
